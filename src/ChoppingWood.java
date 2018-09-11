@@ -11,7 +11,7 @@ public class ChoppingWood {
 		
 		PriorityQueue<Integer> leaf = new PriorityQueue<>(n);
 		Queue<Integer> node = new ArrayDeque<>(n);
-		int[] all = new int[n+1];
+		int[] all = new int[n+2];
 		int in, prev = 0;
 		
 		for (int i=0; i<n-1; i++) {
@@ -45,11 +45,11 @@ public class ChoppingWood {
 				if (node.size() > 0 && --all[node.peek()] == 0) leaf.offer(node.poll());
 			}
 			
-			if (node.size() > 0) {
-				io.println("Error");
-			} else {
+//			if (node.size() > 0) {
+//				io.println("Error");
+//			} else {
 				io.print(sb.toString());
-			}
+//			}
 		}
 		io.close();
 	}
