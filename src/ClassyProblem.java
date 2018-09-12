@@ -39,8 +39,6 @@ public class ClassyProblem {
 				s = io.getWord().split("-");
 				io.getWord();
 				
-//				System.out.println(Arrays.toString(s));
-				
 				a[count] = new node(name, getClassVal(s));
 				count++;
 			}
@@ -59,7 +57,7 @@ public class ClassyProblem {
 	
 	public static int getClassVal(String[] s) {
 		int t = 0;
-		int x = 10;
+		int x = 9;
 		int multiplier = (int)Math.pow(3, x);
 		
 		for (int k=1; k<=10; k++) {
@@ -67,15 +65,15 @@ public class ClassyProblem {
 			if (s.length>=k) {
 
 				switch (s[s.length-k]) {
-				case "middle": t += (multiplier/3);
+				case "middle": t += (multiplier);
 					break;
-				case "lower": t += 2*(multiplier/3);
+				case "lower": t += 2*(multiplier);
 					break;
 				default: 
 					break;
 				}
 			} else {
-				t += multiplier/3;
+				t += (multiplier);
 			}
 			multiplier = (int)Math.pow(3, --x);
 		}
@@ -99,12 +97,10 @@ class node implements Comparable<node> {
 		
 		if (this.val>that.val) {
 			return 1;
-		} else if (this.val == that.val) {
-			return 0;
-		} else if (this.val<that.val) {
+		} else if (this.val < that.val) {
 			return -1;
 		} else {
-			return this.name.compareTo(that.name);
+			return this.name.compareToIgnoreCase(that.name);
 		}
 	}
 	
