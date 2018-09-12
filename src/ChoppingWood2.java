@@ -40,12 +40,8 @@ public class ChoppingWood2 {
 				sb.append(leaf.poll()).append("\n");
 				if (--nLeaves[boundNodes[x++]] == 0) leaf.offer(boundNodes[x-1]);
 			}
-			
-//			if (node.size() > 0) {
-//				io.println("Error");
-//			} else {
-				io.print(sb.toString());
-//			}
+
+			io.print(sb.toString());
 		}
 		io.close();
 	}
