@@ -1,9 +1,6 @@
-import java.util.ArrayDeque;
-import java.util.HashSet;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
-public class ChoppingWood {
+public class ChoppingWood2 {
 
 	public static void main(String[] args) {
 		Kattio io = new Kattio(System.in, System.out);
@@ -11,18 +8,14 @@ public class ChoppingWood {
 		int n = io.getInt();
 		
 		PriorityQueue<Integer> leaf = new PriorityQueue<>(n);
-		Queue<Integer> node = new ArrayDeque<>(n);
-		HashSet<Integer> found = new HashSet<>();
-		int[] all = new int[n+2];
-		int in;
+		int[] nLeaves = new int[n+2];
+		int[] boundNodes = new int[n+1];
+		int in = 0;
 		
-		for (int i=0; i<n-1; i++) {
+		for (int i=1; i<n+1; i++) {
 			in = io.getInt();
-			all[in]++;
-			if (!found.contains(in)){
-				node.offer(in);
-				found.add(in);
-			}
+			nLeaves[in]++;
+			boundNodes[i] = in;
 		}
 		
 //		for (int x: node) {
@@ -31,20 +24,21 @@ public class ChoppingWood {
 //		}
 		
 		boolean err = false;
-		if (io.getInt() != n+1) {
+		if (in != n+1) {
 			err = true;
 			io.println("Error");
 		}
 		
 		if (!err) {
 			for (int i=1; i<n+1; i++) {
-				if (all[i] == 0) leaf.offer(i);
+				if (nLeaves[i] == 0) leaf.offer(i);
 			}
 			
+			int x = 1;
 			StringBuilder sb = new StringBuilder();
-			while (leaf.size() > 0) {
+			while (leaf.size() > 0 && x<boundNodes.length) {
 				sb.append(leaf.poll()).append("\n");
-				if (node.size() > 0 && --all[node.peek()] == 0) leaf.offer(node.poll());
+				if (--nLeaves[boundNodes[x++]] == 0) leaf.offer(boundNodes[x-1]);
 			}
 			
 //			if (node.size() > 0) {
