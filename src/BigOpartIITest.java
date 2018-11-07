@@ -211,8 +211,42 @@ public class BigOpartIITest {
                     assertEquals(funcN(i, j), this.bigO.tally());
                 } catch (AssertionError err) {
                     System.out.println(err);
-                    System.out.println("failed at n=" + i + " , m=" + j);
+                    System.out.println("testN failed at n=" + i + " , m=" + j);
                     return;
+                }
+                
+            }
+        }
+    }
+    
+    @Test
+    void testO() {
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= M; j++) {
+                this.bigO.o(i, j);
+                try {
+                    assertEquals(funcO(i, j), this.bigO.tally());
+                } catch (AssertionError err) {
+                    System.out.println(err);
+                    System.out.println("testO failed at n=" + i + " , m=" + j);
+                    throw err;
+                }
+                
+            }
+        }
+    }
+    
+    @Test
+    void testP() {
+        for (int i = 1; i <= N/20; i++) {
+            for (int j = 2; j <= M/20; j++) {
+                this.bigO.p(i, j);
+                try {
+                    assertEquals(funcP(i, j), this.bigO.tally());
+                } catch (AssertionError err) {
+                    System.out.println(err);
+                    System.out.println("testP failed at n=" + i + " , m=" + j);
+                    throw err;
                 }
                 
             }
@@ -270,6 +304,19 @@ public class BigOpartIITest {
     
     private int funcN(int n, int k) {
         return (int)(Math.log(n)/Math.log(k))+1;
+    }
+    
+    private int funcO(int n, int k) {
+        return (int)Math.ceil((double)n/(2*k));
+    }
+    
+    private int funcP(int n, int k) {
+        int res = 0;
+        
+        for (int i=0; i<n; i++) {
+            res += (int)Math.pow(k, i);
+        }
+        return res;
     }
     
     private double log2(int x) {
