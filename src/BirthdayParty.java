@@ -1,9 +1,11 @@
 
 public class BirthdayParty {
 
+    static UndirectedGraph<Integer> graph;
+    
     public static void main(String[] args) {
         
-        UndirectedGraph<Integer> graph = new UndirectedGraph<>();
+        graph = new UndirectedGraph<>();
         Kattio io = new Kattio(System.in, System.out);
 
         int p, c, u, v;
@@ -30,12 +32,6 @@ public class BirthdayParty {
             
             boolean yes = false;
             
-            for (int i=0; i<p; i++) {
-                if (graph.nEdges(i) < 2) {
-                    yes = true;
-                    break;
-                }
-            }
             
             if (yes) io.println("yes");
             else io.println("no");
@@ -43,5 +39,7 @@ public class BirthdayParty {
         
         io.close();
     }
+    
+    
 
 }
