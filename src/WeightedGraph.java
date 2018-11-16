@@ -16,7 +16,6 @@ public class WeightedGraph {
     
     public void addEdge(int u, int v, int weight) {
         vertices.get(u).nbrs.add(new Edge<Integer>(v,weight));
-        vertices.get(v).nbrs.add(new Edge<Integer>(u,weight));
     }
 
     public Vertex<Integer> getVertex (int x) {
